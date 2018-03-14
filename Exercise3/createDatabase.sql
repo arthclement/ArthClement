@@ -1,13 +1,14 @@
 CREATE TABLE `exercice_3` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(255) NULL,
-  `actors` VARCHAR(255) NULL,
-  `director` VARCHAR(255) NULL,
-  `producer` VARCHAR(255) NULL,
-  `year_of_prod` YEAR NULL,
-  `language` VARCHAR(255) NULL,
-  `category` ENUM NULL,
-  `storyline` TEXT NULL,
+  `title` VARCHAR(255),
+  `actors` VARCHAR(255),
+  `director` VARCHAR(255),
+  `producer` VARCHAR(255),
+  `year_of_prod` YEAR,
+  `language` VARCHAR(255),
+  `category` ENUM('horror', 'action', 'comedy'),
+  `storyline` TEXT,
+  `video` VARCHAR(255),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8

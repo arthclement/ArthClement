@@ -48,6 +48,9 @@ for ($i = 2018; $i > 1900; $i--) {
             <option value="comedy">Comedy</option>
         </select>
         <br>
+        <label for="video">Trailer URL</label>
+        <input type="url" name="video">
+        <br>
         <button type="submit">Submit</button>
     </form>
 </body>

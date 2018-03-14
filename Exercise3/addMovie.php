@@ -21,6 +21,7 @@ if (
         $connection = new PDO('mysql:host=localhost;dbname=phpexam', 'root');
     } catch (PDOException $exception) {
         echo 'Error connecting to DB';
+        return;
     }
 
     $sql = 'INSERT INTO exercice_3(

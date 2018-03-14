@@ -17,7 +17,11 @@ if (
     && strlen($producer) >= 5
     && strlen($synopsis) >= 5    
 ) {
-    $connection = new PDO('mysql:host=localhost;dbname=phpexam', 'root');
+    try {
+        $connection = new PDO('mysql:host=localhost;dbname=phpexam', 'root');
+    } catch (PDOException $exception) {
+        echo 'Error connecting to DB';
+    }
 
     $sql = 'INSERT INTO exercice_3(
         title, 

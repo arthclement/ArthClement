@@ -1,21 +1,21 @@
 <?php
 
 $id = (int) $_GET['id'];
-
+// Connecting to DB
 try {
     $connection = new PDO('mysql:host=localhost;dbname=phpexam', 'root');
 } catch (PDOException $exception) {
     echo 'Error connecting to DB';
     return;
 }
-
+// SQL Query
 $sql = 'SELECT * FROM exercice_3 WHERE id=:id';
 
 $statement = $connection->prepare($sql);
 $statement->bindValue(':id', $id, PDO::PARAM_INT);
-if ($statement->execute()) {
+if ($statement->execute()) { // Will return false if empty
     $returnedValues = $statement->fetchAll();
-    $returnedValues = $returnedValues[0];
+    $returnedValues = $returnedValues[0]; // Always one result (unique id) so we can just use the 0 value of the array
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -37,6 +37,6 @@ if ($statement->execute()) {
     </html>
 <?php
 } else {
-    echo 'Movie does not exist';
+    echo 'Movie does not exist'; // In case of movie not found
 }
 ?>

@@ -1,5 +1,6 @@
 <?php
 
+// Getting variables from POST method, setting to null by default
 $title = $_POST['title'] ?? null;
 $director = $_POST['director'] ?? null;
 $actors = $_POST['actors'] ?? null;
@@ -10,6 +11,7 @@ $language = $_POST['language'] ?? null;
 $category = $_POST['category'] ?? null;
 $video = $_POST['video'] ?? null;
 
+// Checking if all parameters are good
 if (
     strlen($title) >= 5
     && strlen($director) >= 5
@@ -17,13 +19,14 @@ if (
     && strlen($producer) >= 5
     && strlen($synopsis) >= 5    
 ) {
+    // Connecting to DB
     try {
         $connection = new PDO('mysql:host=localhost;dbname=phpexam', 'root');
     } catch (PDOException $exception) {
         echo 'Error connecting to DB';
         return;
     }
-
+    // SQL Query
     $sql = 'INSERT INTO exercice_3(
         title, 
         actors, 
@@ -47,7 +50,8 @@ if (
         );';
 
     $statement = $connection->prepare($sql);
-
+    
+    // Binding values to SQL query
     $statement->bindValue(':title', $title, PDO::PARAM_STR);
     $statement->bindValue(':actors', $actors, PDO::PARAM_STR);
     $statement->bindValue(':director', $director, PDO::PARAM_STR);
@@ -59,10 +63,10 @@ if (
     $statement->bindValue(':video', $video, PDO::PARAM_STR);
 
     $statement->execute();
-
+    // Confirmation message
     echo 'Movie added';
     
-} else {
+} else { // Error message
     ?>
 <p style="color:red">Error with the given informations. Check that all fields are at least 5 characters long.</p>
     <?php

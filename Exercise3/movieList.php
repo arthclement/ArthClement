@@ -1,13 +1,15 @@
 <?php
+// Connecting to DB
 try {
     $connection = new PDO('mysql:host=localhost;dbname=phpexam', 'root');
 } catch (PDOException $exception) {
     echo 'Error connecting to DB';
     return;
 }
-
+// SQL Query
 $sql = 'SELECT * FROM exercice_3';
 
+// Retreiving data
 $statement = $connection->prepare($sql);
 $statement->execute();
 $returnedValues = $statement->fetchAll();
@@ -22,6 +24,7 @@ $returnedValues = $statement->fetchAll();
     <title>Movie list</title>
 </head>
 <body>
+    <!-- Creating table -->
     <table>
         <tr>
             <th>Name of the movie</th>
@@ -31,11 +34,11 @@ $returnedValues = $statement->fetchAll();
         </tr>
         <?php
 foreach ($returnedValues as $key => $value) {
-    echo '<tr>';
+    echo '<tr>'; // Common structure to all movies
     echo '<td>' . $value['title'] . '</td>';
     echo '<td>' . $value['director'] . '</td>';
     echo '<td>' . $value['year_of_prod'] . '</td>';
-    echo '<td><a href="movieInfos.php?id='. $value['id'] . '">Informations</a></td>';    
+    echo '<td><a href="movieInfos.php?id='. $value['id'] . '">Informations</a></td>'; // Link to detailled informations
     echo '</tr>';
 }
         ?>

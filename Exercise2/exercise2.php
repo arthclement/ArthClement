@@ -4,6 +4,8 @@
  * @param int/float $amount The given amount to be converted
  * @param string $currency The targeted currency
  * 
+ * @throws RuntimeException if incorrect currency or amount type
+ * 
  * @return int/float $amountToBeReturned The converted amount 
  */
 function convertCurrency($amount, $currency) {

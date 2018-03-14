@@ -7,6 +7,7 @@
     <title>Add movie</title>
 </head>
 <body>
+    <!-- Method POST to get the informations server-side -->
     <form action="addMovie.php" method="post">
         <label for="title">Title</label>
         <input type="text" name="title">
@@ -26,6 +27,7 @@
         <label for="year_of_prod">Year of production</label>
         <select name="year_of_prod">
 <?php
+// Looping to generate years from 2018 to 1901
 for ($i = 2018; $i > 1900; $i--) {
     echo "<option value=\"$i\">$i</option>";
 }
